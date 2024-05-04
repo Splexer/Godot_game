@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://m5dlr6vxiqti"]
+
+[ext_resource type="Script" path="res://Scenes/cat.gd" id="1_78du4"]
+[ext_resource type="Texture2D" uid="uid://bknivstu67jhp" path="res://Assets/котик1.png" id="1_fvmn5"]
+[ext_resource type="Texture2D" uid="uid://css4q5syugojx" path="res://Assets/котик2.png" id="2_nt7iq"]
+[ext_resource type="Texture2D" uid="uid://bskmhwupu82ca" path="res://Assets/котик3.png" id="3_g3lsw"]
+[ext_resource type="Texture2D" uid="uid://cnx7ee73ee2el" path="res://Assets/котик4.png" id="4_5vvnw"]
+[ext_resource type="Texture2D" uid="uid://0178vfo6e15k" path="res://Assets/котик5.png" id="5_epfpj"]
+[ext_resource type="Texture2D" uid="uid://d0ypn00yo77i" path="res://Assets/котик6.png" id="6_ycyrk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cfhdi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fvmn5")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fvmn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nt7iq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g3lsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5vvnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_epfpj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ycyrk")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 10.0
+}]
+
+[node name="Cat" type="CharacterBody2D"]
+script = ExtResource("1_78du4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cfhdi")
+animation = &"Run"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="FireMarker" type="Marker2D" parent="."]
+position = Vector2(19, 0)

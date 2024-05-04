@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjwoqfajwk4yr"]
+
+[ext_resource type="Script" path="res://FireBall(area).gd" id="1_oo388"]
+[ext_resource type="Texture2D" uid="uid://c7uk674c74qgv" path="res://Assets/Fireball.png" id="2_3hbel"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhvaq"]
+atlas = ExtResource("2_3hbel")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shdwj"]
+atlas = ExtResource("2_3hbel")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i33av"]
+atlas = ExtResource("2_3hbel")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7jgv"]
+atlas = ExtResource("2_3hbel")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0n5k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhvaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shdwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i33av")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7jgv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j4u51"]
+radius = 10.9829
+height = 34.0
+
+[node name="fireball" type="CharacterBody2D"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+top_level = true
+visibility_layer = 2
+script = ExtResource("1_oo388")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+rotation = 1.67552
+sprite_frames = SubResource("SpriteFrames_l0n5k")
+autoplay = "default"
+frame_progress = 0.176651
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(1.55, 1.05)
+
+[node name="FireBall_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireBall_area"]
+rotation = 1.55509
+shape = SubResource("CapsuleShape2D_j4u51")
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+[connection signal="area_entered" from="FireBall_area" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="FireBall_area" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnxs6hlxbasnf"]
+
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_g0bf1"]
+[ext_resource type="PackedScene" uid="uid://c2j4lr1nhemqc" path="res://Scenes/map.tscn" id="1_mqfw8"]
+[ext_resource type="PackedScene" uid="uid://m5dlr6vxiqti" path="res://Scenes/cat.tscn" id="2_g78ay"]
+[ext_resource type="PackedScene" uid="uid://cldx6384mk6pv" path="res://Scenes/enemy.tscn" id="4_2ipv3"]
+[ext_resource type="Texture2D" uid="uid://dp52lk326y1s8" path="res://Assets/Back1.jpg" id="5_dmqum"]
+
+[sub_resource type="Environment" id="Environment_ydp5w"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.96
+glow_strength = 0.93
+glow_blend_mode = 0
+glow_hdr_threshold = 1.46
+glow_hdr_scale = 0.48
+
+[node name="Game" type="Node"]
+script = ExtResource("1_g0bf1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ydp5w")
+
+[node name="Map" parent="." instance=ExtResource("1_mqfw8")]
+
+[node name="Cat" parent="." instance=ExtResource("2_g78ay")]
+position = Vector2(-191, -130)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Enemy" parent="." instance=ExtResource("4_2ipv3")]
+position = Vector2(-346, -133)
+
+[node name="Back1" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-1549, -99)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_dmqum")

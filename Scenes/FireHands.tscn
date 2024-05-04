@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cv01msvdjxdl7"]
+
+[ext_resource type="Script" path="res://Scenes/FireHands.gd" id="1_vpos8"]
+
+[sub_resource type="Gradient" id="Gradient_gq1s3"]
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7, 0.9, 1)
+colors = PackedColorArray(1, 0.992157, 0.101961, 1, 1, 0.772549, 0.0588235, 1, 1, 0.266667, 0, 1, 0.707843, 0.190196, 0.0411765, 1, 0.635226, 0.15575, 0.027451, 1, 0.120801, 0.00692816, 0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ypeo1"]
+gradient = SubResource("Gradient_gq1s3")
+
+[sub_resource type="Curve" id="Curve_y5uie"]
+_data = [Vector2(0, 0.582418), 0.0, 0.0, 0, 0, Vector2(1, 0.252747), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_aeq28"]
+width = 306
+curve = SubResource("Curve_y5uie")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yh2ak"]
+lifetime_randomness = 0.73
+particle_flag_disable_z = true
+direction = Vector3(10, 0, 0)
+spread = 18.202
+flatness = 0.461
+initial_velocity_min = 224.72
+initial_velocity_max = 640.45
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+damping_max = 100.335
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_aeq28")
+color = Color(1, 0.65098, 0, 1)
+color_ramp = SubResource("GradientTexture1D_ypeo1")
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 9.895
+turbulence_noise_speed_random = 0.0
+
+[node name="FireHands" type="GPUParticles2D"]
+modulate = Color(1.4, 1.4, 1.4, 1)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_yh2ak")
+lifetime = 0.3
+one_shot = true
+speed_scale = 1.1
+explosiveness = 0.1
+randomness = 0.84
+collision_base_size = 0.0
+visibility_rect = Rect2(-500, -500, 1000, 1000)
+script = ExtResource("1_vpos8")
